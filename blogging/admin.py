@@ -17,7 +17,7 @@ class CategoryAdmin(admin.ModelAdmin):
     inlines = [
         CategoryInline,
     ]
-    exclude = ('posts',)
+    exclude = ("posts",)
 
 
 admin.site.register(Post, PostAdmin)
