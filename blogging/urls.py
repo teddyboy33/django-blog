@@ -1,4 +1,5 @@
-from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
 from blogging.views import list_view, detail_view  # stub_view
 
 
