@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="backlink" href="/">Home</a>
+<head>
+    <meta charset="UTF-8">
+    <title>Add a post</title>
+</head>
+<body>
+<h1>Add a post</h1>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <p><input type="submit" value="Submit"></p>
+</form>
+</body>
+{% endblock %}
