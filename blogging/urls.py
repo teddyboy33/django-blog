@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from blogging.views import list_view, detail_view, add_model  # stub_view
