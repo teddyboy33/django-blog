@@ -19,4 +19,7 @@ ALLOWED_HOSTS = ["*"]
 MIDDLEWARE = (
     "whitenoise.middleware.WhiteNoiseMiddleware",
     *MIDDLEWARE,
+
 )
+
+SITE_ID = 1
