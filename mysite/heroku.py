@@ -10,7 +10,7 @@ DATABASES = {
     )
 }
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -21,4 +21,4 @@ MIDDLEWARE = (
     *MIDDLEWARE,
 )
 
-SITE_ID = 5
+SITE_ID = 1
