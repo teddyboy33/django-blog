@@ -1,11 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.template import loader
-from blogging.models import Post, Category
 from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.shortcuts import render, redirect
+from django.template import loader
+from django.utils import timezone
+
 from rest_framework import viewsets
 from rest_framework import permissions
+
+from blogging.forms import MyPostForm
 from blogging.serializers import UserSerializer, PostSerializer, CategorySerializer
+from blogging.models import Post, Category
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -38,6 +42,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+
 # def stub_view(request, *args, **kwargs):
 #     body = "Stub View\n\n"
 #     if args:
@@ -67,3 +72,21 @@ def detail_view(request, post_id):
         raise Http404
     context = {"post": post}
     return render(request, "blogging/detail.html", context)
+
+
+def add_model(request):
+
+    if request.method == "POST":
+        form = MyPostForm(request.POST)
+        if form.is_valid():
+            model_instance = form.save(commit=False)
+            model_instance.published_date = timezone.now()
+            model_instance.author = request.user
+            model_instance.save()
+            return redirect("/")
+
+    else:
+
+        form = MyPostForm()
+
+        return render(request, "blogging/add.html", {"form": form})
