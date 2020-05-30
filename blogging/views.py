@@ -1,9 +1,45 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.shortcuts import render, redirect
 from django.template import loader
 from django.utils import timezone
-from blogging.models import Post
+
+from rest_framework import viewsets
+from rest_framework import permissions
+
 from blogging.forms import MyPostForm
+from blogging.serializers import UserSerializer, PostSerializer, CategorySerializer
+from blogging.models import Post, Category
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows posts to be viewed or edited.
+    """
+
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows categories to be viewed or edited.
+    """
+
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 # def stub_view(request, *args, **kwargs):
