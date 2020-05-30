@@ -38,14 +38,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
-
     "rest_framework",
-  
     "polling",
     "blogging",
 ]
@@ -141,4 +138,3 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 4
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
-

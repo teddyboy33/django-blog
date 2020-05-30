@@ -42,7 +42,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-
 # def stub_view(request, *args, **kwargs):
 #     body = "Stub View\n\n"
 #     if args:
